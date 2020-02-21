@@ -9,7 +9,7 @@ DEF_LOGGER("SampleMod");
 DEFAULT_SETTINGS(settings);
 
 void dllenter() { LOGV("ENTER"); }
-void dllexit() { LOGV("EXIT"); }
+void dllexit() { std::cerr << "EXIT (PS: Don't use LOG function here, it will cause crash)" << std::endl; }
 
 void PreInit() {
   LOGV("pre init");
