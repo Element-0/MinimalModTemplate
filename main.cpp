@@ -17,6 +17,6 @@ void PreInit() {
     LOGV("joined name: %s, xuid: %d") % entry.name % entry.xuid;
   });
   Mod::PlayerDatabase::GetInstance().AddListener(
-      SIG("left"), [](Mod::PlayerEntry const &entry) { LOGV("joined name: %s, xuid: %d") % entry.name % entry.xuid; });
+      SIG("left"), [](Mod::PlayerEntry const &entry) { LOGV("left name: %s, xuid: %d") % entry.name % entry.xuid; });
 }
 void PostInit() { LOGV("post init"); }
