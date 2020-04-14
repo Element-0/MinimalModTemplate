@@ -3,16 +3,20 @@
 #include "settings.h"
 #include "playerdb.h"
 
-Settings settings;
-
 DEF_LOGGER("SampleMod");
 DEFAULT_SETTINGS(settings);
 
-void dllenter() { LOGV("ENTER"); }
-void dllexit() { std::cerr << "EXIT (PS: Don't use LOG function here, it will cause crash)" << std::endl; }
+// PS: Reserved for compatibility purposes
+// If it is not necessary, keep both functions empty
+// Initialization can be done in the PreInit function
+// Incorrect use of this function may cause a crash
+void dllenter() {}
+void dllexit() {}
 
 void PreInit() {
   LOGV("pre init");
+  // You can use the event system to receive and process events
+  // The following is an example
   Mod::PlayerDatabase::GetInstance().AddListener(SIG("joined"), [](Mod::PlayerEntry const &entry) {
     LOGV("joined name: %s, xuid: %d") % entry.name % entry.xuid;
   });

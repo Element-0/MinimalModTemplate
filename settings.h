@@ -11,17 +11,14 @@ struct Settings {
     std::string value;
 
     template <typename IO> static inline bool io(IO f, Nested &nested, YAML::Node &node) {
-      f(nested.value, node["value"]);
-      return true;
+      return f(nested.value, node["value"]);
     }
   } nested;
 
   template <typename IO> static inline bool io(IO f, Settings &settings, YAML::Node &node) {
-    f(settings.optionA, node["opt-a"]);
-    f(settings.optionB, node["opt-b"]);
-    f(settings.nested, node["nested"]);
-    return true;
+    return f(settings.optionA, node["opt-a"]) && f(settings.optionB, node["opt-b"]) &&
+           f(settings.nested, node["nested"]);
   }
 };
 
-extern Settings settings;
+inline Settings settings;
